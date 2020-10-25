@@ -1,0 +1,56 @@
+<!-- ページ・ナビゲーションを表示　開始 -->
+<div style="text-align: right; margin: 10px;"><{$pagenav}></div>
+<!-- ページ・ナビゲーションを表示　終了 -->
+
+<table class="outer" cellspacing="1" width="100%">
+  <tr><th colspan="7"><{$lang_tasks}></th></tr>
+　<!-- タスクリストのヘッダを表示　開始 -->
+  <tr class="head" align="left">
+	<td nowrap="nowrap">&nbsp;<{$lang_title}>&nbsp;<a href=<{$sortlink_title_up}>><img src="up_pointer.png"></a>
+	 <a href=<{$sortlink_title_down}>><img src="down_pointer.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td nowrap="nowrap">&nbsp;<{$lang_detail}>&nbsp;<a href=<{$sortlink_detail_up}>><img src="up_pointer.png"></a>
+	  <a href=<{$sortlink_detail_down}>><img src="down_pointer.png"></a>&nbsp;</td>
+	<td width="14%" align="center" nowrap="nowrap"><{$lang_deadline}>
+	 <a href=<{$sortlink_deadline_up}>><img src="up_pointer.png"></a>
+	 <a href=<{$sortlink_deadline_down}>><img src="down_pointer.png"></a>&nbsp;</td>
+	<td width="9%" align="center" nowrap="nowrap"><{$lang_priority}>
+	 <a href=<{$sortlink_priority_up}>><img src="up_pointer.png"></a>
+	 <a href=<{$sortlink_priority_down}>><img src="down_pointer.png"></a>&nbsp;</td>
+	<td width="8%" align="center" nowrap="nowrap"><{$lang_status}>
+	 <a href=<{$sortlink_status_up}>><img src="up_pointer.png"></a>
+	 <a href=<{$sortlink_status_down}>><img src="down_pointer.png"></a>&nbsp;</td>
+	<td width="10%" align="center" nowrap="nowrap"><{$lang_poster}>
+	 <a href=<{$sortlink_poster_up}>><img src="up_pointer.png"></a>
+	 <a href=<{$sortlink_poster_down}>><img src="down_pointer.png"></a>&nbsp;</td>
+	<td width="12%" align="center" nowrap="nowrap"><{$lang_created}>
+	 <a href=<{$sortlink_created_up}>><img src="up_pointer.png"></a>
+	 <a href=<{$sortlink_created_down}>><img src="down_pointer.png"></a>&nbsp;</td>
+  </tr>
+  <!-- タスクリストのヘッダを表示　終了 -->
+  <!-- タスクリストのデータを表示　開始 -->
+  <{foreach item=task from=$tasks}>
+  <tr class="<{cycle values="even,odd}>">
+	<td>
+		<{if $noperm[0] == 0}><a href="<{$task.link}>"><{/if}>
+		<{$task.title}>
+		<{if $noperm[0] == 0}></a><{/if}>
+		<div align="right" nowrap="nowrap"><{if $noperm[0] == 0}><{$task.returnlink}><{$task.deletelink}><{/if}></div>
+	</td>
+	<td><font size="-1"><{$task.detail}></font></td>
+	<td align="center" valign="middle"><{$task.deadline}></td>
+	<td align="center" valign="middle"><{$task.priority}></td>
+	<td align="center" valign="middle"><{$task.status}></td>
+	<td align="center" valign="middle"><{$task.poster}></td>
+	<td align="right" valign="middle"><{$task.created}></td>
+  </tr>
+  <{/foreach}>
+  <!-- タスクリストのデータを表示　終了 -->
+</table>
+
+<!-- ページ・ナビゲーションを表示　開始 -->
+<div style="text-align: right; margin: 10px;"><{$pagenav}></div>
+<!-- ページ・ナビゲーションを表示　終了 -->
+
+<!-- 投稿フォームを表示　開始 -->
+<{$task_form}>
+<!-- 投稿フォームを表示　開始 -->

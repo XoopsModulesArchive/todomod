@@ -1,0 +1,59 @@
+
+<!-- ページ・ナビゲーションを表示　開始 -->
+<{if $block.contents.pagenav != '' }><div style="text-align: right;"><{$block.contents.pagenav}>&nbsp;</div><{/if}>
+<!-- ページ・ナビゲーションを表示　終了 -->
+
+<table class="outer" cellspacing="1" width="100%">
+
+<tr><th colspan="<{$block.contents.width}>"><{$block.contents.th}></th></tr>
+
+<!-- タスクリストのヘッダを表示　開始 -->
+<tr class="head" align="left">
+	<{foreach item=td from=$block.contents.tr_head}>
+		<{if $td.show}>
+			<td align="<{$td.align}>" width="<{$td.width}>" nowrap ><{$td.nbsp}><{$td.string}>&nbsp;
+			  <a href="<{$td.sortlink_up}>"><img src="/modules/todomod/up_pointer.png"></a>
+			  <a href="<{$td.sortlink_down}>"><img src="/modules/todomod/down_pointer.png"></a>&nbsp;
+			</td>
+		<{/if}>
+	<{/foreach}>
+</tr>
+<!-- タスクリストのヘッダを表示　終了 -->
+
+<!-- タスクリストのデータを表示　開始 -->
+<{foreach item=tasks_num from=$block.contents.tr_main}>
+	<tr class="<{cycle values="even,odd}>">
+		<{foreach item=td from=$tasks_num}>
+			<{if $td.show}>
+				<{if $td.title == 1 }>
+					<td align="<{$td.align}>" valign="<{$td.valign}>" >
+				    	    <{if $block.contents.noperm == 0}>
+					    	<a href="/modules/todomod/task_edit.php?task_id=<{$td.id}>">
+					    <{/if}>
+					    <{$td.string}>
+					    <{if $block.contents.noperm == 0}></a><{/if}>
+				  	  <div align="right">
+				    	    <{if $block.contents.noperm == 0}>
+					    	[<a href="/modules/todomod/task_delete.php?task_id=<{$td.id}>"><{$td.string2}></a>]
+					    <{/if}>
+				  	  </div>
+					</td>
+				<{else}>	
+					<td align="<{$td.align}>" valign="<{$td.valign}>" ><font size="<{$td.size}>"><{$td.string}></font></td>
+				<{/if}>
+			<{/if}>
+		<{/foreach}>
+	</tr>
+<{/foreach}>
+<!-- タスクリストのデータを表示　終了 -->
+
+</table>
+
+<!-- ページ・ナビゲーションを表示　開始 -->
+<div style="text-align: right;">
+<{if $block.contents.noperm == 0}>
+	[<a href="/modules/todomod/task_edit.php">
+	<{$block.contents.new}></a>]&nbsp;&nbsp;&nbsp;
+<{/if}>
+<{$block.contents.pagenav}>&nbsp;</div>
+<!-- ページ・ナビゲーションを表示　終了 -->
